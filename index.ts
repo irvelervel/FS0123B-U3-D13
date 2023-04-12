@@ -71,3 +71,63 @@ const additionInTS = (num1: number, num2: number) => {
 
 console.log(additionInTS(5, 7))
 // console.log(additionInTS('5', 7)) // <-- errore prevenuto
+
+// TYPE UNION
+let hello: string | number | undefined = '100'
+hello = 100
+hello = undefined
+
+// TYPE ALIAS
+type StringOrNumber = string | number | undefined
+
+let hello2: StringOrNumber = 'ciao'
+hello2 = 50
+hello2 = undefined
+
+const greetings = (name: string, prefix?: string) => {
+  return (prefix || 'Hello') + ' ' + name
+}
+
+console.log(greetings('Stefano', 'Ciao'))
+console.log(greetings('Luigi', 'Buonasera'))
+
+console.log(greetings('Stefano'))
+
+// ARRAY
+let myArrayOfStrings = ['Andrea', 'Massimiliano', 'Antonio']
+
+// manualmente un tipo array si dichiara così:
+let arrayOfNumbers: number[] = [10, 20, 30]
+// ...oppure così:
+let anotherArrayOfNumbers: Array<number> = [10, 20, 30]
+
+let arrayOfStringsAndNumbers: (string | number)[] = ['stefano', 25]
+let arrayOfStringsAndNumbers2: Array<string | number> = ['stefano', 25]
+let arrayOfStringsAndNumbers3: Array<StringOrNumber> = ['stefano', 25]
+
+arrayOfNumbers.push(1000)
+arrayOfStringsAndNumbers3.push('epicode')
+
+myArrayOfStrings.forEach((el) => {
+  console.log(el.toUpperCase())
+})
+
+// console.log(arrayOfNumbers.pop()?.toString())
+
+// il tipo Array non garantisce il numero di elementi e il loro posizionamento
+let mixedArray: (string | number)[] = ['stefano', 'epicode', 50]
+
+// TUPLE
+// una TUPLA invece sì!
+let tupleArray: [string, number, string] = ['ciao', 50, 'ciao2']
+// ogni elemento sa il proprio tipo
+tupleArray[1] = 500
+
+// OGGETTI
+let epicodeStaffMember = {
+  firstName: 'Dario',
+  lastName: 'Del Giudice',
+  module: 'U1',
+}
+
+console.log(epicodeStaffMember.module.length)
